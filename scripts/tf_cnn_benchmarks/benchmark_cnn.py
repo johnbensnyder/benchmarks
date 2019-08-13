@@ -3482,6 +3482,12 @@ def _print_os_env_ignored_warning(mkl_flag, flag_default_val, os_env_var):
 
 def set_default_param_values_and_env_vars(params):
   """Sets up the default param values and environment variables ."""
+  os.environ['TF_GPU_THREAD_MODE'] = 'gpu_private'
+  os.environ['TF_GPU_THREAD_COUNT'] = '2'
+  os.environ['TF_ENABLE_AUTO_MIXED_PRECISION'] = '1'
+  #os.environ['TF_ENABLE_AUTO_MIXED_PRECISION_GRAPH_REWRITE'] = '1'
+  #os.environ["TF_ENABLE_AUTO_MIXED_PRECISION_LOSS_SCALING"] = '1'
+
   if params.batchnorm_persistent:
     os.environ['TF_USE_CUDNN_BATCHNORM_SPATIAL_PERSISTENT'] = '1'
   else:
