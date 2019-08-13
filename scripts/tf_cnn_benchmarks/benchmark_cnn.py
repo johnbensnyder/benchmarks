@@ -1242,9 +1242,10 @@ def get_optimizer(params, learning_rate):
         momentum=params.rmsprop_momentum,
         epsilon=params.rmsprop_epsilon)
   elif params.optimizer == 'adam':
-    opt = tf.train.AdamOptimizer(learning_rate, params.adam_beta1,
-                                 params.adam_beta2, params.adam_epsilon)
-  elif params.optimizer =='lars':
+    #opt = tf.train.AdamOptimizer(learning_rate, params.adam_beta1,
+    #                             params.adam_beta2, params.adam_epsilon)
+    opt = tf.contrib.opt.LARSOptimizer(learning_rate)
+  elif params.optimizer == 'lars':
     opt = tf.contrib.opt.LARSOptimizer(learning_rate)
   else:
     raise ValueError('Optimizer "{}" was not recognized'.
